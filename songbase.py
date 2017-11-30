@@ -86,8 +86,9 @@ def delete_artists(id):
 
 @app.route('/song/add', methods=['GET', 'POST'])
 def add_songs():
+    artists = Artist.query.all()
     if request.method == 'GET':
-        return render_template('song-add.html')
+        return render_template('song-add.html', artists=artists)
     if request.method == 'POST':
         # get data from the form
         name = request.form['name']
@@ -95,8 +96,8 @@ def add_songs():
         lyrics = request.form['lyrics']
         artist_name = request.form['artist_name']
 
-        artist = Artist.query.filter_by(name=artist_name).first()
         # insert the data into the database
+        artist = Artist.query.filter_by(name=artist_name).first()
         song = Song(name=name, year=year, lyrics=lyrics, artist=artist)
         db.session.add(song)
         db.session.commit()
