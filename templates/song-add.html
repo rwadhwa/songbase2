@@ -10,6 +10,15 @@ Add Songs
       <input type="text" name="name"><br><br>
       <label>Song year</label>
       <input type="text" name="year"><br><br>
+      <select name="year">
+       {% for i in range(1950, 2025) %}
+         {% if i == 2017 %}
+           <option selected="selected">{{i}}</option>
+         {% else %}
+           <option>{{i}}</option>
+         {% endif %}
+       {% endfor %}
+     </select>
       <label>Lyrics</label>
       <input type="text" name="lyrics"><br><br>
       <label>Artist Name</label>
